@@ -36,6 +36,10 @@ EMAIL_HOST_PASSWORD = 'dyqw arpx uchu tzjt'
 
 # Application definition
 
+export DJANGO_SETTINGS_MODULE=core.settings
+daphne core.asgi:application
+
+
 INSTALLED_APPS = [
     "daphne",
     "django.contrib.admin",
