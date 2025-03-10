@@ -1,15 +1,13 @@
+# chat/serializers.py
 from rest_framework import serializers
-from .models import Room, Message
+from .models import ChatRoom, Message  # To'g'ri model nomidan foydalaning
 
-class RoomSerializer(serializers.ModelSerializer):
+class ChatRoomSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Room
-        fields = ['id', 'name', 'participants']
+        model = ChatRoom
+        fields = '__all__'
 
 class MessageSerializer(serializers.ModelSerializer):
-    sender_username = serializers.CharField(source="sender.username", read_only=True)
-
     class Meta:
         model = Message
-        fields = ['id', 'room', 'sender', 'sender_username', 'text', 'timestamp']
-        read_only_fields = ['sender', 'timestamp']
+        fields = '__all__'

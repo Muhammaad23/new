@@ -1,10 +1,5 @@
 from django.contrib import admin
-from .models import Room, Message
+from .models import ChatRoom, Message  # Room o'rniga ChatRoom
 
-@admin.register(Room)
-class RoomAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name']
-
-@admin.register(Message)
-class MessageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'room', 'sender', 'text', 'timestamp']
+admin.site.register(ChatRoom)
+admin.site.register(Message)

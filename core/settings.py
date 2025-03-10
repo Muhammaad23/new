@@ -27,12 +27,22 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'register.CustomUser'  # 'yourapp' o‘rniga loyihangiz nomini yozing
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'behruzmamasaliyev2@gmail.com'
-EMAIL_HOST_PASSWORD = 'dyqw arpx uchu tzjt'
+EMAIL_HOST_USER = 'abdulloxislomov08@gmail.com'
+EMAIL_HOST_PASSWORD = 'eljg tvlg snio faoe'
+
+
+# settings.py
+SESSION_ENGINE = "django.contrib.sessions.backends.db"  # Sessionlarni bazada saqlash
+SESSION_COOKIE_AGE = 86400  # 1 kun (24 soat)
+SESSION_SAVE_EVERY_REQUEST = True  # Har bir so‘rovda session saqlash
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Brauzer yopilganda session yo‘qolmasin
 
 # Application definition
 
@@ -47,18 +57,26 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'drf_yasg',
-    'api',
     'register',
     'channels',
     'chat',
 ]
 
 ASGI_APPLICATION = "core.asgi.application"
-
 CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Redis ishlatish uchun 'channels_redis.core.RedisChannelLayer' ga o'zgartiring
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Token orqali autentifikatsiya
+        'rest_framework.authentication.SessionAuthentication',  # Django sessiyasi orqali autentifikatsiya
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',  # Faqat autentifikatsiyadan o'tganlar foydalanishi mumkin
+    ]
 }
 
 MIDDLEWARE = [
