@@ -1,12 +1,7 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import ChatRoomViewSet, MessageViewSet
-
-# Router yaratish
-router = DefaultRouter()
-router.register(r'chatrooms', ChatRoomViewSet)  # /api/chatrooms/
-router.register(r'messages', MessageViewSet)    # /api/messages/
+from django.urls import path
+from .views import ChatRoomListCreateView, MessageListCreateView
 
 urlpatterns = [
-    path('api/', include(router.urls)),  # Barcha URL-larni avtomatik qo'shish
+    path('rooms/', ChatRoomListCreateView.as_view(), name='room-list'),
+    path('messages/<int:room_id>/', MessageListCreateView.as_view(), name='message-list'),
 ]

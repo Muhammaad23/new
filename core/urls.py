@@ -44,6 +44,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/', include('register.urls')),
     path('api/', include('chat.urls')),
+    path('api/', include('doctors.urls')),
+    path('api/', include('settings.urls')),
 ]
 
 if settings.DEBUG:

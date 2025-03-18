@@ -60,23 +60,30 @@ INSTALLED_APPS = [
     'register',
     'channels',
     'chat',
+    'doctors',
+    'settings',
 ]
 
 ASGI_APPLICATION = "core.asgi.application"
+
 CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Redis ishlatish uchun 'channels_redis.core.RedisChannelLayer' ga o'zgartiring
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],  # Redis ishlayotgan port
+        },
     },
 }
 
+# DRF sozlamalari
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # Token orqali autentifikatsiya
-        'rest_framework.authentication.SessionAuthentication',  # Django sessiyasi orqali autentifikatsiya
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Faqat autentifikatsiyadan o'tganlar foydalanishi mumkin
-    ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
 
 MIDDLEWARE = [
