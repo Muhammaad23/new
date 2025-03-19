@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'chat',
     'doctors',
     'settings',
+    'translate_api',
 ]
 
 ASGI_APPLICATION = "core.asgi.application"

@@ -25,3 +25,4 @@ inflection~=0.5.1
 Markdown~=3.7
 pygments~=2.18.0
 pytz~=2022.7
+googletrans==4.0.0-rc1

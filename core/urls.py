@@ -46,6 +46,7 @@ urlpatterns = [
     path('api/', include('chat.urls')),
     path('api/', include('doctors.urls')),
     path('api/', include('settings.urls')),
+    path('api/', include('translate_api.urls')),
 ]
 
 if settings.DEBUG:
